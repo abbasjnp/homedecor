@@ -1,0 +1,81 @@
+table{
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    tr td{
+        border: 1px solid var(--bdr);
+        padding: 15px 10px;
+    }
+    tr:first-child td{
+        padding: 10px;
+        background-color: #f3f3f3;
+    }
+    .imgCols{
+        li{
+            width: 35px;
+            height: 35px;
+            overflow: hidden;
+            border-radius: 50%;
+            position: relative;
+            display: inline-block;
+            border:2px solid white;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            img{
+                position: absolute;
+                display: block;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+                height: auto;
+                margin: auto;
+            }
+        }
+        li:not(:first-child){
+            margin-left: -20px;
+        }
+    }
+    .subCatCols{
+        ul {
+            display: inline-block;
+        }
+        ul .len{
+            color:#e46677;
+        }
+       
+        ul .fix-len{
+            display: inline-block;
+            width: 45px;
+            white-space: nowrap;
+            overflow: hidden !important;
+            text-overflow: ellipsis;
+        }
+    
+    }
+    button{
+        background-color: var(--green);
+        box-shadow: none;
+        width: 35px;
+        height: 35px;
+        mat-icon{
+            font-size: 20px;
+        }
+    }
+    button:first-child{
+        margin-right: 10px;
+        background-color: var(--red);
+    }
+}
+
+._orderView{
+    table{
+        button{
+            background-color: var(--green);
+        }
+    }
+}
+.ui-g-12{
+    font-size: 18px;
+}

@@ -1,0 +1,50 @@
+.viewBg{
+    background-color: #E8F3EC;
+    height: 400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+._detailsInfo{
+    padding-left: 25px;
+    ._prod{
+        padding: 18px 0;
+        border-bottom: 1px solid var(--bdr); 
+    }
+    table{
+        border-collapse: collapse;
+        tr
+        {
+            td{
+                padding: 18px 0;
+                border-bottom: 1px solid var(--bdr);
+            }
+            td:last-child{
+                color: var(--rgbW1);
+            }
+            td:first-child{
+                font-family: 'Lato-Bold';
+                width: 40%;
+            }
+        }
+    }
+}
+._npr{
+    padding-right: 0!important;
+}
+
+.re0Nxt{
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid var(--bdr);
+    tr{
+        td{
+            padding: 15px;
+        }
+    }
+    tr:first-child{
+        background-color: var(--bdr);
+        color: var(--black)
+    }
+}

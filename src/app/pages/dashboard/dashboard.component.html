@@ -1,0 +1,85 @@
+<app-header></app-header>
+
+<div class="full mgb15 mgt15">
+    <div class="container nopad">
+        <app-locator></app-locator>
+    </div>
+</div>
+
+<div class="full">
+    <div class="container">
+
+        <div class="ui-g-12">
+            <div class="ui-g-6">
+                <h2 class="f1 fo">Welcome To Home Decor Dashboard!</h2>
+                <p class="f1 f15 c5 fo">We need to take a different approach to computer security that doesn’t feel like playing whack-o-mole.”</p>
+            </div>
+            <div class="ui-g-6 tr fo">
+                <mat-form-field class="_sortBY">
+                    <mat-select placeholder="Sort by :" (selectionChange)="onChangeOption($event)">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let state of ['Monthly','Yearly','Weekly']" [value]="state">{{state}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="ui-g-12 pad">
+            <div class="ui-g-3 nopl" *ngFor="let a of user_info">
+                <user-card [data]="a"></user-card>
+                <!--card load-->
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="full fo">
+    <div class="container _conBtActGrf">
+        <div class="ui-g-12">
+            <div class="ui-g-6 b3 nop" style="background-color: white;">
+                <h2 class="br2 c1 pad">Activate User</h2>
+                <h2 class="pad">{{total_users}} Users</h2>
+                <div class="ui-g-12 pad">
+                    <p class="c5" style="padding:5px 0;">{{active_users}}
+                        <span class="RHS f18 f4 c4">{{total_users}}</span>
+                    </p>
+                    <p-slider [(ngModel)]="active_users1" class="ac_first " [style]="{'height':'12px'}"></p-slider>
+                </div>
+                <div class="ui-g-12 pad">
+                    <p class="c5" style="padding:5px 0;">{{inactive_users}}
+                        <span class="RHS f18 f4 c4">{{total_users}}</span>
+                    </p>
+                    <p-slider [(ngModel)]="inactive_users1" class="ac_first ac_second" [style]="{'height':'12px'}"></p-slider>
+                </div>
+            </div>
+            <div style="margin-left:1%;">
+                <div class="ui-g-6 b3 nop" style="padding-left:2%;">
+                    <div style="background-color:white;">
+
+                        <h2 class="br2 c1 pad" style="">Order Analysis <span style="float:right;font-size:16px;color:gray;margin-top: 2%;">Sort by:-<select style="border:none;outline: none;background:none;color:black;" id="selectedOption"><option *ngFor="let option of Options">{{option.name}}</option></select></span>
+                        </h2>
+                        <div style="display: block;padding: 0 0 0 50px;margin-top:2%;">
+                            <canvas baseChart width="340" height="170" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="false" chartType="line" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="full fo">
+    <div class="container b3 mgt15">
+        <h2 class="br2 pad">Recently Users</h2>
+        <div class="ui-g-12">
+            <recently-user [data]="userDetails" (route)="viewRouting($event)"></recently-user>
+        </div>
+    </div>
+</div>
+
+
+<div class="_pagnat fo">
+    <p-paginator [rows]="10" [totalRecords]="totalData" (onPageChange)="paginate($event)"></p-paginator>
+</div>

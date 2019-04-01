@@ -1,0 +1,36 @@
+.lst4P{
+    label{
+        width: 100%;
+        display: inline-block;
+    }
+    td{
+        margin-right: 25px;
+        display: initial;
+    }
+}
+
+
+
+.s_g8v{
+    button{
+        padding-top: 4px;
+        padding-bottom: 4px;
+        margin-left: 20px;
+        min-width: 100px;
+    }
+    button:last-child{
+        background-color: var(--green);
+    }
+}
+.mat-expansion-panel-header-description, .mat-expansion-panel-header-title{
+    width: 100%;
+    position: relative;
+}
+ .example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+.example-full-width2 {
+    width: 100%;
+  }
+  

@@ -1,0 +1,40 @@
+<header>
+    <div class="full b1 c3 ov" style="font-family: Poppinsl;">
+        <div class="container">
+            <div class="ui-g-4">
+                <h3><a style="color: white;font-family: Poppinsl;font-size: 24px;text-decoration: none;margin-top: 3%;" routerLink="/dashboard"><span style=" font-weight: 600;">Home</span> <span style=" font-weight: 100;"> Decor</span></a></h3>
+            </div>
+            <div class="ui-g-6 nop tr f3">
+                <nav>
+                    <ul>
+                        <li class="c d pad o" routerLink="/dashboard" routerLinkActive="activeTab">Dashboard</li>
+                        <li class="c d pad o" routerLink="/users" routerLinkActive="activeTab">Users</li>
+                        <li class="c d pad o" routerLink="/orders" routerLinkActive="activeTab">Orders</li>
+                        <li class="c d pad droper" (click)="optionWithCategory($event,0)" [ngClass]="{'activeTab':active==3}">Add Category </li>
+                        <li class="c d pad droper" (click)="optionWithCategory($event,1)" [ngClass]="{'activeTab':active==4}">Cms</li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="ui-g-2 tr matIco9n nop">
+                <button mat-icon-button [matMenuTriggerFor]="notify">
+                    <mat-icon matBadge="{{'2'}}" matBadgeColor="primary">notifications</mat-icon>
+                </button>
+                <button mat-icon-button (click)="optionWithCategory($event,2)">
+                    <mat-icon aria-label="icon">person_outline</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<mat-menu #notify="matMenu" class="NotifyBox">
+    <button mat-menu-item>Notification 1</button>
+    <button mat-menu-item>Notification 2</button>
+</mat-menu>
+
+<div class="deleteConform" *ngIf="showOption">
+    <div class="overlay-backdrop bt" (click)="heroAction(false)"></div>
+    <div class="_diglogConform b3 sh bd4" [ngStyle]="{'left': left}">
+        <button mat-button *ngFor="let cat of categoryOption" (click)="heroAction(true,cat)" [routerLink]="cat?.route">{{cat?.cat}}</button>
+    </div>
+</div>

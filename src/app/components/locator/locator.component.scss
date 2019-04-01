@@ -1,0 +1,25 @@
+.breadcrumbs{
+    li{
+        display: inline-block;
+        padding-right:12px;
+        position: relative;
+        color: var(--rgbW1);
+        a{
+            color: inherit;
+        }
+    }
+    li:last-child{
+        color: var(--black);
+    }
+
+    li:not(:first-child){
+        padding-left: 6px;
+    }
+    li:not(:last-child):after{
+        content: "/";
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}

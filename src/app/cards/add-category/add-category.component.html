@@ -1,0 +1,100 @@
+<div class="ui-g-12 br2">
+    <h2 class="f4 ptb ui-g-4">{{data?.header}}</h2>
+    <div class="ui-g-8 b tr">
+    </div>
+</div>
+
+<div class="ui-g-12 sb p mgt15 clrboth" *ngIf="data?.id!=404">
+    <div class="ui-g-6 ui-g-offset-3 _apcmg r">
+        <article *ngIf="data?.id==1" id="Adcategory">
+            <form [formGroup]="category">
+                <mat-form-field class="full">
+                    <input matInput formControlName="name" placeholder="Add Category" value="" required>
+                </mat-form-field>
+                <p class="error" style="top:55px;left: 8px;"></p>
+            </form>
+            <div class="tr _subBtn">
+                <button mat-raised-button class="b1 c3 u f4 bdno" (click)="addCategory(false)">Add</button>
+                <button mat-raised-button class="u b6 c3 f4 mgl15 bdno" (click)="addCategory(true)">Save & Add new</button>
+            </div>
+        </article>
+        <!--New Filed-->
+        <article *ngIf="data?.id==2" id="AdSubcategory">
+            <form [formGroup]="category">
+                <mat-form-field class="full">
+                    <input type="text" formControlName="category_id" placeholder="Select Category" aria-label="Number" matInput [matAutocomplete]="auto" (keydown)="searchCategory($event)">
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)='selectOption($event,2)'>
+                        <mat-option *ngFor="let option of options" [value]="option?.name" [title]="option?.id">
+                            {{option?.name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <p class="error" style="top:35px;"></p>
+                </mat-form-field>
+
+                <mat-form-field class="full">
+                    <input matInput formControlName="name" placeholder="Add Sub Category" value="" required>
+                    <p class="error" style="top:35px;"></p>
+                </mat-form-field>
+            </form>
+            <div class="tr _subBtn">
+                <button mat-raised-button class="b1 c3 u f4 bdno" (click)="addSubCategory(false)">Add</button>
+                <button mat-raised-button class="u b6 c3 f4 mgl15 bdno" (click)="addSubCategory(true)">Save & Add new</button>
+            </div>
+        </article>
+        <!--New Filed-->
+        <article *ngIf="data?.id==3" id="atC">
+            <form [formGroup]="category">
+                <mat-form-field class="full">
+                    <input matInput placeholder="Add Texture Category" formControlName="name" value="" required>
+                </mat-form-field>
+                <p class="error" style="top: 55px;left: 10px;"></p>
+            </form>
+            <div class="tr _subBtn">
+                <button mat-raised-button class="b1 c3 u f4 bdno" (click)="addTextureCategory(false)">Add</button>
+                <button mat-raised-button class="u b6 c3 f4 mgl15 bdno" (click)="addTextureCategory(true)">Save & Add new</button>
+            </div>
+        </article>
+        <!--New Filed-->
+        <article *ngIf="data?.id==4" id="addTxtr">
+            <form [formGroup]="category">
+                <p-multiSelect [options]="texture" class="inpFull _add5Tx" optionLabel="label" (onChange)="selectOption($event.value,1)" required></p-multiSelect>
+                <p class="error" style="top:40px;left:10px;"></p>
+                <mat-form-field class="full">
+                    <input formControlName="texture_name" matInput placeholder="Add Textue Name" value="" required />
+                    <p class="error e34"></p>
+                </mat-form-field>
+                <div class="mgt15">
+                    <div class="ui-lg-5 nop">
+                        <!-- <div class="_imgUpload ov r">
+              <div class="crossImg" (click)="cancelImage()"></div>
+              <input type="file" (change)="uploadImage($event)">
+            </div> -->
+                        <div class="_imgUpload ov r sb">
+                            <span *ngIf="imageUpload">
+                <div class="crossImg c3 c" (click)="imageUpload=''">
+                  <i class="material-icons">close</i>
+                </div>
+                <div class="_runBg" [ngStyle]="{'background-image': 'url(' + imageUpload?.base + ')'}"></div>
+              </span>
+                            <input type="file" (change)="uploadImage($event)">
+                        </div>
+                    </div>
+                </div>
+                <div class="tr _subBtn ui-g-12 mgt15">
+                    <button mat-raised-button (click)="addTexture(false)" class="b1 c3 u f4 bdno">Add</button>
+                    <button mat-raised-button (click)="addTexture(true)" class="u b6 c3 f4 mgl15 bdno">Save & Add new</button>
+                </div>
+            </form>
+        </article>
+    </div>
+</div>
+
+
+<!-----------Page Not Found------------->
+<div class="ui-g-12 sb p mgt15 clrboth" *ngIf="data?.id==404">
+    <div class="_apcmg tc">
+        <h2 class="f1 c5">"Oops! Page Not Found."</h2>
+    </div>
+</div>
+
+<p-growl [(value)]="msgs"></p-growl>

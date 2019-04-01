@@ -1,0 +1,210 @@
+._decImg {
+    background-color: #f5f5f5;
+}
+
+._imgPart {
+    width: 60px;
+    img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+._uigr {
+    td {
+        ruby {
+            padding: 0 30px;
+        }
+        span {
+            color: var(--black);
+            font-family: 'Lato-Regular';
+        }
+    }
+    td:not(:first-child) {
+        border-right: 1px solid #d8d8d8;
+    }
+}
+
+.unksrch {
+    padding: 7px 0;
+    border: none;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.proBtn {
+    button {
+        padding: 6px 20px;
+    }
+    button:not(:first-child) {
+        margin-left: 10px;
+    }
+}
+
+.cardcat5 {
+    margin-bottom: 15px;
+    td {
+        padding: 4px 0;
+    }
+    .vord {
+        border-top: 1px solid var(--bdr);
+        border-bottom: 2px solid var(--pink);
+        color: var(--pink);
+        i {
+            vertical-align: middle;
+            position: absolute;
+        }
+    }
+    .vord:hover {
+        i {
+            margin-left: 10px;
+        }
+    }
+}
+
+._addPre {
+    float: right;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: var(--green);
+    color: var(--white);
+    margin-bottom: 15px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.permissionTable {
+    border-collapse: collapse;
+    color: #444444;
+    tr {
+        td {
+            padding: 16px 12px;
+        }
+        td:last-child {
+            width: 120px;
+        }
+    }
+    tr:not(:last-child) {
+        border-bottom: 1px solid var(--bdr);
+    }
+    tr:first-child {
+        background-color: var(--bdr);
+        td {
+            font-family: 'Lato-Bold';
+            padding: 12px;
+        }
+    }
+    button {
+        width: 35px;
+        height: 35px;
+        box-shadow: none;
+        .material-icons {
+            font-size: 20px;
+        }
+    }
+    button:first-child {
+        margin-right: 10px;
+        background-color: var(--red);
+    }
+    button:last-child {
+        background-color: var(--green);
+    }
+}
+
+.ui-multiselect-item ui-corner-all ng-tns-c10-3 ng-star-inserted ui-state-highlight:active {
+    background-color: none !important;
+}
+
+.backgg {
+    background-color: none !important;
+}
+.example-margin{
+    margin-right: 20px;
+    width: 20px;
+    height: 20px;
+}
+.sub-cat-name{
+    font-size: 17px;
+    /* opacity: 0.7; */
+    margin-left: 39px;
+    color: dimgrey;
+    padding: 17px 0px;
+}
+.sub-cat-name span{
+    float: right;
+  //  margin-right: -15px
+}
+.select-all{
+    font-size: 16px;
+    font-weight: bold;
+    color: darkslategrey;
+    margin-top: 14px
+}
+.select-all span{
+    margin-left:20px;
+}
+.permission{
+    margin-right: 102px;
+    font-size: 16px;
+}
+.permission span{
+    font-size: 15px;
+    margin-left: 5px
+}
+.sub-category-list{
+    max-height: 250px;
+    overflow-y: auto;
+}
+.add-permission-header{
+    // overflow: hidden;
+    position: fixed;
+    z-index: 1;
+    background-color:white;
+    margin-top: -16px;
+    padding-top: 7px;
+    margin-left: -16px;
+    padding-left: 29px;
+    /* margin-bottom: -10px; */
+    padding-bottom: 10px;
+}
+.dialog-content{
+    padding-top:60px;    
+}
+.action-row{
+//    position: fixed;
+//    left: 0;
+//    bottom: 0;
+//    width: 100%;
+//    background-color: red;
+//    color: white;
+//    text-align: center;
+}
+.action-row .btn{
+   
+   padding: 10px 27px;
+   font-size: 16px;
+   font-weight: bold;
+   letter-spacing: 0.5px;
+   border: solid 1px #bfbfbf;
+   color: #bfbfbf;
+}
+.action-row .btn:hover
+.btn.btn-light:active,
+.btn.btn-light:focus,{
+    background-color: var(--pink);
+    color:white;
+    border:solid 1px var(--pink);
+}
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-accent .mat-pseudo-checkbox-checked, .mat-accent .mat-pseudo-checkbox-indeterminate, .mat-pseudo-checkbox-checked, .mat-pseudo-checkbox-indeterminate {
+    background-color:var(--pink) ; /* Red background for example */
+}
+.permission-data{
+    font-size: 17px;
+}
+.permission-data tr td ul li{
+    display: inline;
+    text-decoration: none;
+
+}
+button .a{
+    background-color: pink !important;
+}

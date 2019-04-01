@@ -1,0 +1,14 @@
+<!-- <div class="ui-g-12 breadcrumbs">
+    <ul class="ui-g-12 nopad">
+        <li *ngFor="let a of ar">
+            <a> {{a.name}} </a>
+        </li>
+    </ul>
+</div> -->
+<div class="ui-g-12 breadcrumbs">
+    <ul class="ui-g-12 nopad fo">
+        <li *ngFor="let element of elements; let i=index">
+            <a routerLink="/dashboard" style="color:gray;">{{element.nameDash}}</a><span>{{element.name}}</span>
+        </li>
+    </ul>
+</div>

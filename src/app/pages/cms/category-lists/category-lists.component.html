@@ -1,0 +1,25 @@
+<div class="full">
+    <div class="container b3">
+        <div class="ui-g-12 br2">
+            <h2 class="f4 ptb ui-g-4">Category List</h2>
+            <div class="ui-g-8 b tr">
+                <mat-form-field>
+                    <input matInput placeholder="Search Category..." (keydown)="searchSomthing($event)">
+                    <span matPrefix><i class="fa fa-search" style="color: #d5d5d5;"aria-hidden="true"></i>&nbsp;</span>
+                </mat-form-field>
+                <button mat-button class="f4 b7 c3 mgl15"><i class="material-icons">filter_list</i> FILTER</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="full">
+    <div class="container b3">
+        <div *ngIf="data">
+            <cms-tabel [data]="data" (delete)="deleteConformByAdmin($event)" (route)="OutputRouting($event)"></cms-tabel>
+        </div>
+        <div class="_pagnat">
+            <p-paginator [rows]="10" [totalRecords]="page"></p-paginator>
+        </div>
+    </div>
+</div>

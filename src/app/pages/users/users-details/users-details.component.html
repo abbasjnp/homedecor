@@ -1,0 +1,59 @@
+<div class="full">
+    <div class="container b3">
+        <div class="ui-g-12 br2">
+            <h2 class="f4 ptb ui-g-4" style="font-family:Poppinsl;">All Users</h2>
+            <div class="ui-g-8 b tr">
+                <mat-form-field>
+                    <input type="search" matInput="search" placeholder="Search Here..." (keyup)="searchWithFilter($event)">
+                    <span matPrefix><i class="fa fa-search" style="color: #d5d5d5;"aria-hidden="true"></i>&nbsp;</span>
+                </mat-form-field>
+                <button mat-button class="f4 b7 c3 mgl15" (click)="filterSearch=true"><i class="material-icons">filter_list</i> FILTER</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="full" *ngIf="userDetails">
+    <div class="container b3">
+        <recently-user [data]="userDetails" (route)="viewRouting($event)"></recently-user>
+        <!--load component-->
+    </div>
+</div>
+
+
+<div class="deleteConform" *ngIf="deleteConform">
+    <div class="overlay-backdrop" (click)="deleteConformOption()"></div>
+    <div class="diglogConform b3 sh bd4 pad">
+        <h4 class="ptb">Confirmation</h4>
+        <p class="c5">Are you sure that you want to proceed?</p>
+        <div class="full tr ptb">
+            <button mat-button class="f4 c4" (click)="deleteConformOption(true)">OK</button>
+            <button mat-button class="f4 c4" (click)="deleteConformOption()">CANCEL</button>
+        </div>
+    </div>
+</div>
+
+<!--filter-->
+<div class="deleteConform _filteruser" *ngIf="filterSearch">
+    <div class="overlay-backdrop" (click)="deleteConformOption()"></div>
+    <div class="diglogConform b3 sh bd4 pad">
+        <h4 class="mgb15 pb16 br2">Filter</h4>
+        <mat-radio-group [(ngModel)]="filterQuery">
+            <mat-radio-button class="full" style="padding-bottom: 15px;" value="active">
+                active
+            </mat-radio-button>
+            <mat-radio-button class="full" style="padding-bottom: 15px;" value="inactive">
+                inactive
+            </mat-radio-button>
+        </mat-radio-group>
+        <div class="full tr ptb">
+            <button mat-button class="f4 c4 sb" (click)="filterSearch=false">CANCEL</button>
+            <button mat-button class="f4 c3 b1" style="margin-left: 15px;" (click)="confirmOption()">APPLY</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="_pagnat">
+    <p-paginator [rows]="10" [totalRecords]="totalData" (onPageChange)="paginate($event)"></p-paginator>
+</div>

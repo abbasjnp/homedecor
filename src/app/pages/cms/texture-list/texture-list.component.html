@@ -1,0 +1,22 @@
+<div class="full">
+    <div class="container b3">
+        <div class="ui-g-12 br2">
+            <h2 class="f4 ptb ui-g-4">Texture List</h2>
+            <div class="ui-g-8 b tr">
+                <mat-form-field>
+                    <input matInput placeholder="Search Texture...">
+                </mat-form-field>
+                <button mat-button class="f4 b7 c3 mgl15"><i class="material-icons">filter_list</i> FILTER</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="full">
+    <div class="container b3">
+        <cms-tabel (delete)="deleteConformByAdmin($event)" (route)="OutputRouting($event)"></cms-tabel>
+        <div class="_pagnat p">
+            <p-paginator [rows]="10" [totalRecords]="100"></p-paginator>
+        </div>
+    </div>
+</div>

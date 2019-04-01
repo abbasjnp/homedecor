@@ -1,0 +1,177 @@
+<div class="full mgt15 mgb15">
+    <div class="container b3 ptb">
+        <h3 class="f2 nomg pad br2">Add Model</h3>
+    </div>
+</div>
+<div class="full" style="margin-bottom:100px;">
+    <div class="container b3 pad">
+        <div class="ui-g-12 sb">
+            <div class="ui-lg-8 ui-lg-offset-2">
+                <form [formGroup]="addModel">
+                    <div>
+                        <mat-form-field class="example-full-width2">
+                            <input type="text" placeholder="Select Category" aria-label="Number" matInput [formControl]="categoryControl"
+                                [(ngModel)]="getCategoryValue" [matAutocomplete]="auto" required (click)="onLoad(0)">
+                                <mat-error *ngIf="categoryControl.invalid">{{getErrorMessage()}}</mat-error>
+                            <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getSubCategory($event.option.value.category_id)'
+                                [displayWith]="displayFn">
+                                <mat-option *ngFor="let option of filteredCategory | async" [value]="option">
+                                    {{option.category_name}}
+                                </mat-option>
+                            </mat-autocomplete>
+
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="example-full-width2">
+                            <input type="text" placeholder="Select Sub Category" aria-label="Number" matInput
+                                [formControl]="subCategoryControl" [matAutocomplete]="auto2" (click)="onLoad(1)">
+                          <mat-error *ngIf="subCategoryControl.invalid">{{getErrorMessage()}}</mat-error>
+                            <mat-autocomplete #auto2="matAutocomplete" (optionSelected)='getSubCategoryKey($event.option.value.subcategory_id)'
+                                [displayWith]="displayFn2">
+                                <mat-option *ngFor="let option of filteredSubCategory | async" [value]="option">
+                                    {{option.subcategory_name}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+
+                    <!-- <mat-accordion> -->
+                        <!-- <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Select Category
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <p class="error"></p>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <p-autoComplete formControlName="category" [suggestions]="results" field="name" placeholder="search Category..."
+                                (completeMethod)="search($event,0)" (onSelect)="selectOptions($event,0)" class="inpFull">
+                            </p-autoComplete>
+                        </mat-expansion-panel> -->
+
+                        <!-- <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Select Sub Category
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <p class="error"></p>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <p-autoComplete formControlName="subcategory" (onSelect)="selectOptions($event,1)"
+                                [suggestions]="results" field="name" placeholder="search Category..." (completeMethod)="search($event,1)"
+                                class="inpFull">
+                            </p-autoComplete>
+                        </mat-expansion-panel> -->
+
+                        <!-- <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Available in
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <p class="error"></p>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <p-multiSelect (onChange)="selectOptions($event,-1)" (keydown)="search($event,-1)"
+                                [options]="results" class="inpFull">
+                            </p-multiSelect>
+                        </mat-expansion-panel> -->
+                        <mat-form-field>
+                            <mat-select placeholder="Availabe In" [formControl]="toppings" multiple>
+                                <mat-select-trigger>
+                                    {{toppings.value ? toppings.value[0] : ''}}
+                                    <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+                                        (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' :
+                                        'others'}})
+                                    </span>
+                                </mat-select-trigger>
+                                <mat-option *ngFor="let topping of availableIn" [value]="topping.texturecategory_id">{{topping.texturecategory_name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    <!-- </mat-accordion> -->
+                    <div class="lst4P mgt15">
+                        <label>Enter Scale Size</label>
+                        <table cellspacing="5">
+                            <tr>
+                                <td>
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="length" matInput type="number" placeholder="Length">
+                                        <p class="error e34"></p>
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="height" matInput type="number" placeholder="Height">
+                                        <p class="error e34"></p>
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <mat-form-field class="example-full-width">
+                                        <input formControlName="base" matInput #postalCode type="number" maxlength="5"
+                                            placeholder="Base" value="">
+                                        <p class="error e34"></p>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                        </table>
+                        <mat-form-field class="full">
+                            <input formControlName="modal" matInput placeholder="Enter Model Name" value="">
+                            <p class="error e34"></p>
+                        </mat-form-field>
+                    </div>
+                    <div class="mgt15">
+                        <div class="ui-lg-3 nop">
+                            <p for="" style="padding:10px 0px;color: #6f6a6a;"> Image</p>
+                            <div class="_imgUpload ov r sb">
+                                <span *ngIf="imageUpload">
+                                    <div class="crossImg c3 c" (click)="imageUpload=''">
+                                        <i class="material-icons">close</i>
+                                    </div>
+                                    <div class="_runBg" [ngStyle]="{'background-image': 'url(' + imageUpload?.base + ')'}"></div>
+                                </span>
+                                <input type="file" (change)="uploadImage($event,'simple model')">
+                            </div>
+
+                        </div>
+
+                        <div class="ui-lg-3 nop">
+                            <p for="" style="padding:10px 0px;color: #6f6a6a;">3d Model Android</p>
+                            <div class="_imgUpload ov r sb" style="background:url('/assets/image/3d_plc.jpeg');background-size: cover;">
+                                <span *ngIf="threedAndroidUrl">
+                                    <div class="crossImg c3 c" (click)="threedAndroidUrl=''">
+                                        <i class="material-icons">close</i>
+                                    </div>
+                                    <div class="_runBg" [ngStyle]="{'background-image': 'url(' + threedAndroidUrl?.base + ')'}"></div>
+                                </span>
+                                <input type="file" (change)="uploadImage($event,'3d model android')">
+                            </div>
+                        </div>
+                        <div class="ui-lg-3 nop">
+                            <p for="" style="padding:10px 0px;color: #6f6a6a;">3d Model iOS</p>
+                            <div class="_imgUpload ov r sb" style="background:url('/assets/image/3d_plc.jpeg');background-size: cover;">
+                                <span *ngIf="threedIosUrl">
+                                    <div class="crossImg c3 c" (click)="threedIosUrl=''">
+                                        <i class="material-icons">close</i>
+                                    </div>
+                                    <div class="_runBg" [ngStyle]="{'background-image': 'url(' + threedIosUrl?.base + ')'}"></div>
+                                </span>
+                                <input type="file" (change)="uploadImage($event,'3d model iOS')">
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+                <div class="ui-g-12 tr s_g8v">
+                    <button (click)="submitForm(false)" mat-flat-button color="accent" class="f2 f15">Add</button>
+                    <button (click)="submitForm(true)" mat-flat-button color="primary" class="f2 f15">Save & Add New</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-growl [(value)]="msgs"></p-growl>

@@ -1,0 +1,25 @@
+<div class="full1">
+    <div class="container clrboth">
+        <img style="  margin-left: auto; margin-right:auto; margin-top:30px !important;   height: 150px; width: 150px;" src="/assets/image/innotical pink logo.png" class="mauto _db">
+        <form [formGroup]="logIn" class="r mcm">
+            <h2 align="center"><strong>Sign In</strong></h2>
+            <h6 align="center" style="color: #A9A9A9">sign in to start designing your Home</h6>
+            <br>
+            <label class="r">
+          <input type="email" formControlName="email" placeholder="Enter Email Address">
+          <p class="error"></p>
+        </label>
+            <label class="r">
+          <input type="Password" placeholder="Password" minlength="5" maxlength="20" formControlName="password">
+          <p class="error"></p>
+        </label>
+            <!-- <p-captcha style="width:400px; height: 50px;" siteKey="6Lfom3cUAAAAANZ6ZOdgS5ZoBEfesW9Gb3emCjK5" (onResponse)="showResponse($event)"></p-captcha> -->
+
+            <button (click)="signIn()">SIGN IN</button>
+            <br>
+            <h6 align="center">Forget Password ?<a routerLink="/login" style="color:#f18383">Click Here</a></h6>
+        </form>
+
+    </div>
+    <p-growl [(value)]="msgs"></p-growl>
+</div>

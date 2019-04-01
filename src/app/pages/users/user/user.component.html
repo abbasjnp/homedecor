@@ -1,0 +1,270 @@
+<div class="full">
+    <div class="container b3">
+        <div class="ui-g-12 br2">
+            <h2 class="f4 ptb ui-g-4">User Details</h2>
+            <div class="ui-g-8 b tr">
+                <button mat-button class="f4 b2 c3 mgl15 bdno" (click)="deleteUser()"><i class="material-icons">delete</i>
+                    DELETE</button>
+                <button mat-button class="f4 b7 c3 mgl15 bdno u" (click)="visibility(userDetails.is_active)">
+                    <i class="material-icons" *ngIf="!userDetails?.is_active">visibility_off</i>
+                    <i class="material-icons" *ngIf="userDetails?.is_active">visibility</i>
+                    visibility
+                </button>
+            </div>
+        </div>
+        <!--end of button-->
+        <div class="ui-g-12 _uigr">
+            <table class="full f2 c5 tc">
+                <tr>
+                    <td class="_imgPart"><img src="./assets/image/default.png" class="bd"></td>
+                    <td>User Name <ruby>:</ruby> <span>{{userDetails?.name}}</span> </td>
+                    <td>Mobile Number <ruby>:</ruby> <span>{{userDetails?.mobile}}</span> </td>
+                    <td>Email Id <ruby>:</ruby> <span>{{userDetails?.email}}</span> </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="full">
+    <div class="container">
+        <div class="ui-g-12 mgt15 mgb15 b3">
+            <mat-accordion>
+                <mat-expansion-panel (click)="FilterCategoryPermission()">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="f4">
+                            User Permission
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <button mat-raised-button class="_addPre u" (click)="addPermission()"><i class="material-icons">add</i>
+                        Add permission</button>
+                    <table class="full permissionTable sb f1 permission-data">
+                        <tr>
+                            <td>Category Permission</td>
+                            <td>Sub Category Permission</td>
+                            <td>Action</td>
+                        </tr>
+                        <tr *ngFor="let pc of PermissionCategoryObj;let i =index">
+                            <td>{{pc.name}}</td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="let data of pc.subCategories">{{data.sub_cat_name}}, </li>
+                                </ul>
+                            </td>
+                            <td>
+                                <button mat-mini-fab class="a" (click)="DeleteCategoryPermission(pc.id,i)">
+                                    <mat-icon aria-label="delete">delete</mat-icon>
+                                </button>
+                               
+                                <button mat-mini-fab class="_c">
+                                    <mat-icon aria-label="visibility">visibility</mat-icon>
+                                </button>
+                                <!-- <button mat-mini-fab>
+                  <mat-icon aria-label="visibility">visibility</mat-icon>
+                </button> -->
+                            </td>
+                        </tr>
+                    </table>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="full">
+    <div class="container b3">
+        <div class="ui-g-12 nop">
+            <div class="ui-lg-8 proBtn nop">
+                <button mat-button class="f4 b6 c3 bdno" (click)="viewProduct(0)" style="background-color:#02d5a1;">Viewed
+                    Products</button>
+                <button mat-button class="f4 b7 c3 bdno" (click)="viewProduct(1)">Ordered Products</button>
+                <button mat-button class="f4 b6 c3 bdno" (click)="viewProduct(2)">Saved Screenshots</button>
+            </div>
+            <div class="ui-g-4 b tr">
+                <i class="fa fa-search" style="color: #d5d5d5;margin-left:4%;" aria-hidden="true"></i>&nbsp;
+                <input type="text" placeholder="Search Here..." class="unksrch o">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="full">
+    <div class="container">
+        <div class="ui-g-12 sb">
+            <div class="ui-g-3" *ngFor="let view of viewProducts">
+                <div class="ui-g-12 cardcat5 sb nop">
+                    <div class="full _decImg" [style.background-image]="'url(' + httpService.base_path_img+ view.image + ')'"></div>
+                    <div class="full pad">
+                        <table class="full f3 f14">
+                            <tr>
+                                <td>Category</td>
+                                <td>:</td>
+                                <td>{{view?.category_name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Sub Category</td>
+                                <td>:</td>
+                                <td>{{view?.sub_category_name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Model Name</td>
+                                <td>:</td>
+                                <td>{{view?.name}}</td>
+                            </tr>
+                            <!-- <tr>
+                <td>Avaliable</td>
+                <td>:</td>
+                <td>Wood,Glass</td>
+              </tr> -->
+                            <tr>
+                                <td>Scale</td>
+                                <td>:</td>
+                                <td>{{view?.breadth}},{{view?.length}},{{view?.height}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div *ngIf="whichPath==0" class="full pad tc vord c o" routerLink="/users/order-view/{{view?.id}}">
+                        <p>View more <i class="material-icons slow">navigate_next</i></p>
+                    </div>
+                    <div *ngIf="whichPath==1" class="full pad tc vord c o" routerLink="/users/order-product/{{view?.screenshot_id}}">
+                        <p>View more <i class="material-icons slow">navigate_next</i></p>
+                    </div>
+                    <div *ngIf="whichPath==2" class="full pad tc vord c o" routerLink="/users/screenshot/{{view?.screenshot_id}}">
+                        <p>View more <i class="material-icons slow">navigate_next</i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="_pagnat">
+    <p-paginator rows="10" [totalRecords]="count" (onPageChange)="morePageData($event)"></p-paginator>
+</div>
+
+
+<div class="deleteConform" *ngIf="deleteConform">
+    <div class="overlay-backdrop" (click)="deleteConformOption()"></div>
+    <div class="diglogConform b3 sh bd4 pad">
+        <h4 class="ptb">Confirmation</h4>
+        <p class="c5">Are you sure that you want to proceed?</p>
+        <div class="full tr ptb">
+            <button mat-button class="f4 c4" (click)="deleteConformOption(true)">OK</button>
+            <button mat-button class="f4 c4" (click)="deleteConformOption()">CANCEL</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="addPermissionView">
+    <div class="" style="background-color: rgba(0, 0, 0, .288);position: fixed;left: 0;right: 0;top: 0;bottom: 0;z-index: 99;"></div>
+    <div style=" min-width: 500px;max-width: 600px;min-height: 600px;max-height: 600px;left: 50%;overflow-y: scroll; top: 50%;  position: fixed;left: 0;right: 0;top: 0;bottom: 0;z-index: 100;margin-top:7%;margin-left:35%;"
+        class="b3 sh bd4 pad">
+
+        <div class="add-permission-header">
+            <h4 class="ptb" style="font-family:poppinsl;font-size: 20px;"><b>Add Permission </b><button style="float: right;margin-left:350px;background-color: transparent;outline:none;border:none;color: #e46677;"
+                    (click)="cancelButton()"> <i class="fa fa-close"></i></button></h4>
+        </div>
+        <div class="dialog-content">
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let category of mainCategoryObj">
+
+                    <!-- <mat-expansion-panel-header [ngStyle]="{'background-color':category.cat_flag?'#4CAF50':'whitesmoke'}" (click)="getSubcategory(category.id)"> -->
+                    <mat-expansion-panel-header (click)="getSubcategory(category.id)">
+
+                        <mat-panel-title>
+
+                            {{category.name}}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <div class="permission">{{permission}}<span *ngFor="let p of permitted"></span></div>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="sub-category-list">
+                        <div class="select-all">Select All<span>
+                                <mat-checkbox class="example-margin" [(ngModel)]="checkedAll" [labelPosition]="labelPosition"
+                                    (change)="selectAll(category.id)">
+                                </mat-checkbox>
+                            </span></div>
+                        <div class="sub-cat-name" *ngFor="let data of subcategory">
+                            {{data.sub_cat_name}}<span>
+                                <mat-checkbox class="example-margin" [(ngModel)]="data.sub_cat_flag" (change)="checkedSubCategory(category.id)">
+                                </mat-checkbox>
+                            </span>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+
+                <div class="action-row">
+                    <mat-action-row>
+                        <button mat-button class="f4 c4 btn btn-light" (click)="cancelButton()">CANCEL</button>
+                        <button mat-button class="f4 c4 btn btn-light" (click)="okButton()">APPLY</button>
+                    </mat-action-row>
+                </div>
+
+            </mat-accordion>
+        </div>
+
+        <!-- Copyright 2019 Google Inc. All Rights Reserved.
+              Use of this source code is governed by an MIT-style license that
+              can be found in the LICENSE file at http://angular.io/license -->
+
+        <!-- <div>
+            <input type="checkbox" style="zoom: 1.5;background-color: pink;color: white;padding:2%;margin-right: 4%;">
+
+            <p-multiSelect [options]="furniture" optionLabel="name" style="" defaultLabel="Furniture" styleClass="backgg">
+            </p-multiSelect>
+
+        </div>
+
+        <div style="margin-left:6%;border-bottom: 1px solid #3333;">
+
+        </div>
+
+        <span style="margin-top:-2%;">
+            <input type="checkbox" style="zoom: 1.5;background-color: pink;color: white;">
+        </span>
+        <p-multiSelect [options]="cities2" optionLabel="name" style="" defaultLabel="Bath"> </p-multiSelect>
+
+        <div>
+            <input type="checkbox" value="">
+
+            <p-multiSelect [options]="cities2" optionLabel="name" style="" defaultLabel="Outdoor">
+            </p-multiSelect>
+
+
+        </div>
+
+
+        <p-multiSelect [options]="cities2" optionLabel="name" style="" defaultLabel="Lighting">
+        </p-multiSelect>
+        <p-multiSelect [options]="cities2" optionLabel="name" style="" defaultLabel="Decor">
+        </p-multiSelect> -->
+        <!-- <select style="border:none;outline:none;background-color: none;width: 280px;">
+            <input type="checkbox">Furniture
+        <option>Coffee Table</option>
+        <option>Stool</option>
+        </select>
+
+        <select>
+            <option>Bath</option>
+        </select>
+        <select>
+            <option>Outdoor</option>
+        </select>
+        <br>
+        <input type="checkbox"><select style="border:none;outline:none;background-color: white;width: 200px;"><option>a</option><option>b</option><option>c</option></select><br>
+        <input type="checkbox">kac<br> -->
+
+
+
+        <!-- <div class="full tr ptb">
+            <button mat-button class="f4 c4" (click)="okButton()">OK</button>
+            <button mat-button class="f4 c4" (click)="cancelButton()">CANCEL</button>
+        </div> -->
+
+    </div>
+</div>
+
+<p-growl [(value)]="msgs"></p-growl>

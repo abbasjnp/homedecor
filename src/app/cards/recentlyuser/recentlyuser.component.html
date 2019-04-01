@@ -1,0 +1,42 @@
+<div class="ui-g-12">
+    <table class="full b3">
+        <tr>
+            <td>S.No</td>
+            <td>Name</td>
+            <td>Mobile Number</td>
+            <td>Email Id</td>
+            <td>Active</td>
+        </tr>
+        <tr class="c5" *ngFor="let dta of data;let i=index ">
+            <td>{{i}}</td>
+            <td>{{dta?.name}}</td>
+            <td>{{dta?.mobile}}</td>
+            <td>{{dta?.email}}</td>
+            <td style="text-align:center;">
+                <button mat-mini-fab class="_a" (click)="deleteCall(i,dta.user_id)">
+          <mat-icon aria-label="delete">delete</mat-icon>
+        </button>
+                <button mat-mini-fab class="_b" [ngClass]="{'_dis': !dta.is_active}" class="_b" (click)="activeDactiveUser(i,dta.user_id,dta.is_active)">
+          <mat-icon aria-label="visibility">power_settings_new</mat-icon>
+        </button>
+                <button mat-mini-fab class="_c" (click)="userView(dta.user_id)">
+          <mat-icon aria-label="visibility">visibility</mat-icon>
+        </button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="deleteConform" *ngIf="deleteConform">
+    <div class="overlay-backdrop" (click)="deleteConformOption()"></div>
+    <div class="diglogConform b3 sh bd4 pad">
+        <h4 class="ptb">Confirmation</h4>
+        <p class="c5">Are you sure that you want to proceed?</p>
+        <div class="full tr ptb">
+            <button mat-button class="f4 c4" (click)="deleteConformOption(true)">OK</button>
+            <button mat-button class="f4 c4" (click)="deleteConformOption()">CANCEL</button>
+        </div>
+    </div>
+</div>
+
+<p-growl [(value)]="msgs"></p-growl>

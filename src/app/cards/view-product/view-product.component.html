@@ -1,0 +1,57 @@
+<div class="full" style="margin-bottom:60px;">
+    <div class="container b3 pad">
+        <div class="ui-g-12 sb pad _npr" *ngIf="data?.length>0">
+            <div class="ui-g-6 viewBg" [style.backgroundImage]="'url('+httpService.base_path_img+data?.image+ ')'"></div>
+            <div class="ui-g-6 nopt _detailsInfo _npr">
+                <h2 class="nom f1">{{data?.name}}</h2>
+                <!-- <p class="f1 f14 c5"><span *ngFor="let sub of data?.available_textures">{{sub?.name}}, </span></p> -->
+                <p class="_prod">Products Details</p>
+                <table class="full">
+                    <tr>
+                        <td>#Category </td>
+                        <td>{{data?.category_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>#Sub category name</td>
+                        <td>{{data?.sub_category_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>#Textures</td>
+                        <td>
+                            {{data?.available_textures}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#Size</td>
+                        <td>{{data?.length}}x{{data?.height}}</td>
+                    </tr>
+                    <tr>
+                        <td>#Date</td>
+                        <td>{{data?.time}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ui-g-12 nop" *ngIf="routingPage.route=='order-product'">
+                <table class="full re0Nxt f1 c5">
+                    <tr>
+                        <td>Order Id</td>
+                        <td>Order Date</td>
+                        <td>Order Time</td>
+                        <td>Cost</td>
+                        <td>Quantity</td>
+                        <td>Total Price</td>
+                    </tr>
+                    <tr>
+                        <td>#dfsdfdsfds</td>
+                        <td>12/Aug/2018</td>
+                        <td>4:00 Pm</td>
+                        <td>$500</td>
+                        <td>2 Stool</td>
+                        <td>$1000</td>
+                    </tr>
+                </table>
+                <h3 class="tr pad c5 f1">Grand Total <span class="c4 pad">$10000</span></h3>
+            </div>
+        </div>
+    </div>
+</div>

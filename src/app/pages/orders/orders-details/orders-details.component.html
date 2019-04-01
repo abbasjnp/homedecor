@@ -1,0 +1,61 @@
+<div class="full">
+    <div class="container b3">
+        <div class="ui-g-12 br2">
+            <h2 class="f4 ptb ui-g-4">All Order</h2>
+            <div class="ui-g-8 b ">
+
+
+
+                <div style="float:right">
+                    <mat-form-field style="">
+                        <input matInput placeholder="Search Here..." (keyup)="searchWithFilter($event)" style="margin-right:5%;">
+                        <span matPrefix><i class="fa fa-search" style="color: #d5d5d5;"aria-hidden="true"></i>&nbsp;</span>
+                    </mat-form-field>
+                    <p-splitButton dir="null" (onClick)="onSelect($event)" [model]="items" label="Sort By:"></p-splitButton>
+                </div>
+
+
+                <!-- <button mat-button class="f4 b7 c3 mgl15"><i class="material-icons">filter_list</i> FILTER</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="full">
+    <div class="container b3 _orderView">
+        <div class="ui-g-12">
+            <table class="full b3" style="border-collapse:collapse;">
+                <tr style="">
+                    <td>S.No</td>
+                    <td>Order Id</td>
+                    <td>User Name</td>
+                    <td>Product Name</td>
+                    <td>Material Used</td>
+                    <td>Texture</td>
+                    <td>Size</td>
+                    <td>Order Date & Time</td>
+                    <td>Active</td>
+                </tr>
+                <tr class="c5" *ngFor="let order of orders;let i=index;">
+                    <td>{{i+1}}</td>
+                    <td>{{order?.id}}</td>
+                    <td>{{order?.user}}</td>
+                    <td>{{order?.product}}</td>
+                    <td>{{order?.texture_category}}</td>
+                    <td>{{order?.texture}}</td>
+                    <td>W {{order?.breadth}}",D {{order?.length}}", H {{order?.height}}</td>
+                    <td>{{order?.created_at | date:'MMM d, y, h:mm a'}}</td>
+                    <td class="odmbt">
+                        <button mat-mini-fab [routerLink]="order?.id">
+                <mat-icon aria-label="visibility">visibility</mat-icon>
+              </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="_pagnat">
+            <p-paginator [rows]="10" [totalRecords]="count" (onPageChange)="paginate($event)"></p-paginator>
+        </div>
+    </div>
+</div>
